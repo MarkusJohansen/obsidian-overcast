@@ -1,0 +1,170 @@
+/* Overcast — soft, even light for long reading without eye strain.
+   No pure black, no pure white. Body text sits at ~10:1 contrast in dark mode and
+   ~12:1 in light: well above WCAG AAA (7:1), far below the 21:1 of white on black
+   that causes halation (letters glowing and smearing). Accents are desaturated
+   so nothing on the page shouts. Variables only, no selector hacks — survives updates. */
+
+.theme-dark {
+  --tx-1: #d6d2c8;   /* soft off-white, slightly warm   — 9.9:1 on page */
+  --tx-2: #a39f96;   /* muted                             — 5.7:1 */
+  --tx-3: #7e7b74;   /* faint (metadata, placeholders)   — 3.5:1 */
+  --bg-1: #25272a;   /* page — charcoal, never black */
+  --bg-2: #2d3034;
+  --bg-3: #363a3e;
+  --frame: #202225;  /* chrome a shade deeper than the page */
+  --ui-1: #3a3e43;
+  --ui-2: #4b5056;
+  --ac-1: #8fb3c9;   /* dusty blue — readable, not neon */
+  --ac-2: #a9c6d8;
+  --c-blue: 143, 179, 201;
+  --c-sage: 152, 178, 140;
+  --c-clay: 206, 146, 122;
+  --c-gold: 210, 182, 120;
+  --c-plum: 182, 156, 192;
+  --select: rgba(143, 179, 201, 0.22);
+  --hilite: rgba(210, 182, 120, 0.22);
+}
+
+.theme-light {
+  --tx-1: #2e2c28;   /* warm charcoal ink                — 12.1:1 on page */
+  --tx-2: #5f5b53;   /* muted                             — 5.9:1 */
+  --tx-3: #8a857b;   /* faint                             — 3.2:1 */
+  --bg-1: #f3efe6;   /* page — warm off-white, cuts glare */
+  --bg-2: #ebe6da;
+  --bg-3: #e2dccd;
+  --frame: #ece7dc;
+  --ui-1: #ddd6c7;
+  --ui-2: #c9c0ae;
+  --ac-1: #37627f;   /* muted steel blue */
+  --ac-2: #2f5873;
+  --c-blue: 55, 98, 127;
+  --c-sage: 98, 128, 84;
+  --c-clay: 170, 98, 70;
+  --c-gold: 168, 128, 48;
+  --c-plum: 128, 92, 140;
+  --select: rgba(55, 98, 127, 0.16);
+  --hilite: rgba(214, 176, 82, 0.32);
+}
+
+body {
+  /* Inter: tall x-height, open c/e/a, even strokes that hold up at reduced contrast.
+     SF Pro is the fallback if Inter is missing. */
+  --font-text-theme: "Inter", "SF Pro Text", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-interface-theme: "Inter", "SF Pro Text", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-monospace-theme: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --font-text-size: 17px;        /* inside the 16–18px band for desktop reading */
+  --font-weight: 400;            /* Regular: light loses contrast, bold slows reading */
+  --bold-weight: 600;            /* emphasis without a heavy black blob */
+  --line-height-normal: 1.6;     /* top of the 1.4–1.6 band; keeps the eye on its line */
+  --file-line-width: 36rem;      /* ~65–70 characters at 17px, inside the 50–75 band */
+  --p-spacing: 1em;
+
+  --shadow-s: none;
+  --shadow-l: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  --background-primary: var(--bg-1);
+  --background-primary-alt: var(--bg-2);
+  --background-secondary: var(--frame);
+  --background-secondary-alt: var(--bg-2);
+  --background-modifier-border: var(--ui-1);
+  --background-modifier-border-hover: var(--ui-2);
+  --background-modifier-border-focus: var(--ui-2);
+  --background-modifier-hover: var(--bg-2);
+  --background-modifier-active-hover: var(--bg-3);
+  --background-modifier-form-field: var(--bg-2);
+  --titlebar-background: var(--frame);
+  --titlebar-background-focused: var(--frame);
+  --ribbon-background: var(--frame);
+  --ribbon-background-collapsed: var(--frame);
+  --tab-container-background: var(--frame);
+  --status-bar-background: var(--frame);
+
+  --text-normal: var(--tx-1);
+  --text-muted: var(--tx-2);
+  --text-faint: var(--tx-3);
+  --text-accent: var(--ac-1);
+  --text-accent-hover: var(--ac-2);
+  --text-on-accent: var(--bg-1);
+  --text-selection: var(--select);
+  --text-highlight-bg: var(--hilite);
+
+  --interactive-accent: var(--ac-1);
+  --interactive-accent-hover: var(--ac-2);
+  --interactive-normal: var(--bg-2);
+  --interactive-hover: var(--bg-3);
+  --link-color: var(--ac-1);
+  --link-color-hover: var(--ac-2);
+  --link-external-color: var(--ac-1);
+  --link-external-color-hover: var(--ac-2);
+  --link-unresolved-color: var(--tx-2);
+  --link-unresolved-opacity: 1;
+
+  /* Headings: weight and size, not colour — colour changes make the eye refocus. */
+  --h1-size: 1.8em;  --h1-weight: 650; --h1-color: var(--tx-1);
+  --h2-size: 1.45em; --h2-weight: 620; --h2-color: var(--tx-1);
+  --h3-size: 1.2em;  --h3-weight: 600; --h3-color: var(--tx-1);
+  --h4-size: 1.05em; --h4-weight: 600; --h4-color: var(--tx-1);
+  --h5-size: 1em;    --h5-weight: 600; --h5-color: var(--tx-2);
+  --h6-size: 0.95em; --h6-weight: 600; --h6-color: var(--tx-2);
+
+  --bold-color: var(--tx-1);
+  --italic-color: var(--tx-1);
+  --blockquote-border-color: var(--ui-2);
+  --blockquote-color: var(--tx-2);
+  --hr-color: var(--ui-1);
+  --code-background: var(--bg-2);
+  --code-normal: var(--tx-1);
+  --table-border-color: var(--ui-1);
+  --table-header-background: var(--bg-2);
+  --checkbox-color: var(--ac-1);
+  --checkbox-border-color: var(--ui-2);
+  --tag-background: rgba(var(--c-blue), 0.12);
+  --tag-background-hover: rgba(var(--c-blue), 0.2);
+  --tag-color: var(--ac-1);
+  --tag-border-width: 0px;
+
+  --callout-info: var(--c-blue);
+  --callout-todo: var(--c-blue);
+  --callout-tip: var(--c-sage);
+  --callout-success: var(--c-sage);
+  --callout-question: var(--c-gold);
+  --callout-warning: var(--c-gold);
+  --callout-summary: var(--c-gold);
+  --callout-quote: var(--c-plum);
+  --callout-example: var(--c-plum);
+  --callout-important: var(--c-clay);
+  --callout-fail: var(--c-clay);
+  --callout-error: var(--c-clay);
+  --callout-bug: var(--c-clay);
+
+  /* Obsidian's named colours (used by graph, canvas, inline HTML charts) — muted to match. */
+  --color-blue-rgb: var(--c-blue);   --color-blue: rgb(var(--c-blue));
+  --color-green-rgb: var(--c-sage);  --color-green: rgb(var(--c-sage));
+  --color-red-rgb: var(--c-clay);    --color-red: rgb(var(--c-clay));
+  --color-orange-rgb: var(--c-clay); --color-orange: rgb(var(--c-clay));
+  --color-yellow-rgb: var(--c-gold); --color-yellow: rgb(var(--c-gold));
+  --color-purple-rgb: var(--c-plum); --color-purple: rgb(var(--c-plum));
+
+  --graph-line: var(--ui-2);
+  --graph-node: var(--tx-2);
+  --graph-node-unresolved: var(--tx-3);
+  --graph-node-focused: var(--ac-1);
+  --graph-node-tag: rgb(var(--c-sage));
+  --graph-node-attachment: rgb(var(--c-gold));
+}
+
+/* Light text on dark looks bolder and tighter than it is (irradiation).
+   A hair of letter-spacing and grayscale smoothing keep strokes from blooming. */
+.theme-dark .markdown-rendered,
+.theme-dark .markdown-source-view.mod-cm6 .cm-content {
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tell I, l and 1 apart: Inter's tailed lowercase l (cv05) and serifed capital I (cv08).
+   Unknown features are ignored, so the SF Pro fallback is unaffected. */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 .cm-content {
+  font-feature-settings: "cv05" 1, "cv08" 1;
+}
