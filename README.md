@@ -51,3 +51,7 @@ The theme only sets CSS variables, plus a few small rules for text rendering. It
 3. In Obsidian, open Settings → Appearance → Themes and choose **Overcast**. Restart Obsidian if you have just installed Inter.
 
 If your sidebars look washed out, turn off **Translucent window** under Settings → Appearance. With it on, a bright desktop wallpaper shows through the sidebars and brings the glare back.
+
+## License
+
+[MIT](LICENSE)
